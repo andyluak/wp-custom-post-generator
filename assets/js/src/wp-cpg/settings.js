@@ -34,14 +34,10 @@ export const App = (props) => {
     const { setCookie, readCookie, checkCookie } = Cookies();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
     useConstructor(() => {});
 
-	useEffect(() => {
-		checkCookie('jwt');
-	}, [])
-
     const handleSubmit = (e) => {
-        console.log(e);
         e.preventDefault();
         fetch('http://dlmcsv.local/wp-json/jwt-auth/v1/token', {
             method: 'POST',
@@ -58,8 +54,8 @@ export const App = (props) => {
                 return response.json();
             })
             .then((user) => {
-                console.log(user.token);
                 setCookie('jwt', user.token, 1);
+                setLoggedIn(true);
             });
     };
 
@@ -84,45 +80,41 @@ export const App = (props) => {
                 console.log(post);
             });
     };
-	if (checkCookie('jwt')) {
-        <div onClick={addPost}> Add Post</div>;
-    }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input
-                    type="text"
-                    value={username}
-                    name="name"
-                    onChange={(e) => {
-                        setUsername(e.target.value);
-                    }}
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                    }}
-                />
-            </label>
-            <input type="submit" value="Submit" />
-        </form>
+        <>
+            {!loggedIn && (
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Username:
+                        <input
+                            type="text"
+                            value={username}
+                            name="name"
+                            onChange={(e) => {
+                                setUsername(e.target.value);
+                            }}
+                        />
+                    </label>
+                    <label>
+                        Password:
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                            }}
+                        />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+            )}
+            {checkCookie('jwt') && <div onClick={addPost}> Add Post</div>}
+        </>
     );
-
-
 };
 export default App;
 
-document.addEventListener('DOMContentLoaded', () => {
-    const htmlOutput = document.getElementById('wp-cpg-settings');
+const htmlOutput = document.getElementById('wp-cpg-settings');
 
-    if (htmlOutput) {
-        render(<App />, htmlOutput);
-    }
-});
+render(<App />, htmlOutput);
