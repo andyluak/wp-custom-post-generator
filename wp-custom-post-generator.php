@@ -30,4 +30,4 @@ define( 'WP_CPG_URL', plugin_dir_url( __FILE__ ) );
 define( 'WP_CPG_FILE', plugin_basename( __FILE__ ) );
 
 
-require WP_CPG_PATH . 'includes/class-wp-custom-post-generator.php';
+require WP_CPG_PATH . 'includes/class-wp-cpg.php';
