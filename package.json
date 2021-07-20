@@ -7,14 +7,15 @@
 	"scripts": {
 		"build": "webpack",
 		"watch": "webpack --watch",
-		"production": "cross-env NODE_ENV=production webpack"
+		"production": "cross-env NODE_ENV=production webpack",
+		"dev": "TAILWIND_MODE=watch postcss -i tailwind.css -o build.css --watch"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.0.0",
 		"@babel/plugin-proposal-object-rest-spread": "^7.0.0",
 		"@babel/preset-env": "^7.0.0",
 		"@babel/preset-react": "^7.0.0",
-		"autoprefixer": "10.2.6",
+		"autoprefixer": "^10.3.1",
 		"babel-loader": "^8.2.2",
 		"browser-sync": "2.27.3",
 		"browser-sync-webpack-plugin": "2.3.0",
@@ -36,13 +37,21 @@
 		"load-grunt-tasks": "^5.1.0",
 		"mini-css-extract-plugin": "^1.6.2",
 		"node-sass": "6.0.0",
-		"postcss-loader": "6.1.0",
+		"postcss": "^8.3.5",
+		"postcss-cli": "^8.3.1",
+		"postcss-loader": "6.1.1",
 		"sass-loader": "^12.1.0",
 		"style-loader": "^3.0.0",
+		"tailwindcss": "^2.2.4",
 		"webpack": "^5.41.1",
 		"webpack-cli": "^4.7.2"
 	},
 	"dependencies": {
-		"npm": "^7.19.0"
+		"@fullhuman/postcss-purgecss": "^4.0.3",
+		"npm": "^7.19.0",
+		"postcss-flexbugs-fixes": "^5.0.2",
+		"postcss-import": "^14.0.2",
+		"postcss-preset-env": "^6.7.0",
+		"precss": "^4.0.0"
 	}
 }

@@ -15,7 +15,7 @@ const config = {
 		rules: [
 			{
 				test: /\.scss$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader?url=false', 'postcss-loader', 'sass-loader' ]
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader' ]
 			},
 			{
 				test: /\.js$/,
@@ -26,7 +26,8 @@ const config = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '/css/wp-cpg-settings.css'
+			filename: '/css/wp-cpg-settings.css',
+			chunkFilename: "styles.css"
 		}),
 		new BrowserSyncPlugin({
 			proxy: 'localhost/',

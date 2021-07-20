@@ -2,7 +2,7 @@
  * Internal deps
  */
 import Cookies from './components/Cookies';
-
+import style from './style.scss';
 /**
  * Wordpress deps
  */
@@ -83,7 +83,7 @@ export const App = (props) => {
 
     return (
         <>
-            {!loggedIn && (
+            {null === readCookie('jwt') && (
                 <form onSubmit={handleSubmit}>
                     <label>
                         Username:
@@ -109,7 +109,7 @@ export const App = (props) => {
                     <input type="submit" value="Submit" />
                 </form>
             )}
-            {checkCookie('jwt') && <div onClick={addPost}> Add Post</div>}
+            {null !== readCookie('jwt') && <div className="flex-auto flex space-x-3" onClick={addPost}> <button className="w-1/2 flex items-center justify-center rounded-full p-6 text-white">Add Post </button></div>}
         </>
     );
 };

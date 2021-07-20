@@ -1,0 +1,31 @@
+.flex {
+    display: flex
+}
+.w-1\/2 {
+    width: 50%
+}
+.flex-auto {
+    flex: 1 1 auto
+}
+.items-center {
+    align-items: center
+}
+.justify-center {
+    justify-content: center
+}
+.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))
+}
+.rounded-full {
+    border-radius: 9999px
+}
+.p-6 {
+    padding: 1.5rem
+}
+.text-white {
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, var(--tw-text-opacity))
+}
+
